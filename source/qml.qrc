@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>City.qml</file>
+        <file>Line.qml</file>
     </qresource>
 </RCC>

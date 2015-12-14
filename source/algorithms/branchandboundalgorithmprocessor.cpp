@@ -6,7 +6,7 @@ BranchAndBoundAlgorithmProcessor::BranchAndBoundAlgorithmProcessor()
 }
 
 
-void BranchAndBoundAlgorithmProcessor::start(QList<QPair<qreal, qreal> > points){
+void BranchAndBoundAlgorithmProcessor::start(QList<City> points){
     emit(done(points));
     return;
 }

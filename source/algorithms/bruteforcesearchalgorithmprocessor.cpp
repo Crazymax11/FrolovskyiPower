@@ -5,16 +5,16 @@ BruteForceSearchAlgorithmProcessor::BruteForceSearchAlgorithmProcessor()
 
 }
 
-void BruteForceSearchAlgorithmProcessor::start(QList<QPair<qreal, qreal>> points){
-    QList<QPair<qreal, qreal>> emptyPath;
+void BruteForceSearchAlgorithmProcessor::start(QList<City> points){
+    QList<City> emptyPath;
     extendPath(emptyPath, points);
     emit(done(m_bestRoute));
 }
 
 
-void BruteForceSearchAlgorithmProcessor::extendPath(QList<QPair<qreal, qreal>> route, QList<QPair<qreal, qreal> > points){
+void BruteForceSearchAlgorithmProcessor::extendPath(QList<City> route, QList<City> points){
     for(int i=0;i<points.size();i++){
-        QList<QPair<qreal,qreal>> tempPoints = points;
+        QList<City> tempPoints = points;
         route.append(tempPoints.at(i));
         tempPoints.removeAt(i);
         extendPath(route,tempPoints);

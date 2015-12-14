@@ -1,11 +1,10 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
-#include "core.h"
+
+#include <app/core.h>
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    Core core;
+    Core app(argc, argv);
     return app.exec();
-    //D:
 }
 

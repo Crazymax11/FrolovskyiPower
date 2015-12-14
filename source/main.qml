@@ -1,6 +1,5 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
-
 ApplicationWindow {
     visible: true
     width: 640
@@ -10,6 +9,11 @@ ApplicationWindow {
     signal start(string name, string data)
 
     signal result(string time, real res)
+
+    function showPath(path){
+        console.log(path.length)
+    }
+
     onResult: resText.text = time + " " + res
     Rectangle{
         id: map
@@ -27,6 +31,56 @@ ApplicationWindow {
                 object.y = mouse.y - 10
                 map.points.push(object)
             }
+        }
+
+
+    }
+    Line{
+        id: line
+        x1:0
+        y1:0
+        x2: 20
+        y2:20
+        Component.onCompleted: timer.start()
+        Behavior on x1 {
+            NumberAnimation {
+                //This specifies how long the animation takes
+                duration: 600
+                //This selects an easing curve to interpolate with, the default is Easing.Linear
+            }
+        }
+        Behavior on y1 {
+            NumberAnimation {
+                //This specifies how long the animation takes
+                duration: 600
+                //This selects an easing curve to interpolate with, the default is Easing.Linear
+            }
+        }
+        Behavior on x2 {
+            NumberAnimation {
+                //This specifies how long the animation takes
+                duration: 600
+                //This selects an easing curve to interpolate with, the default is Easing.Linear
+            }
+        }
+        Behavior on y2 {
+            NumberAnimation {
+                //This specifies how long the animation takes
+                duration: 600
+                //This selects an easing curve to interpolate with, the default is Easing.Linear
+            }
+        }
+
+    }
+    Timer{
+        id: timer
+        repeat: true
+        interval: 1000
+        onTriggered: {
+            line.x1 += 10
+            line.y1 += 15
+            line.x2 +=20
+            line.y2 +=15
         }
     }
 

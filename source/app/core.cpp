@@ -1,6 +1,8 @@
 #include "core.h"
 #include <QDebug>
-Core::Core(QObject *parent) : QObject(parent)
+#include <QQmlApplicationEngine>
+#include "core.h"
+Core::Core(int & argc, char ** argv): QApplication(argc,argv)
 {
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     QObject* root = engine.rootObjects()[0];
@@ -26,13 +28,13 @@ Core::~Core(){
 
 void Core::start(QString methodName, QString data)
 {
-    QList < QPair <qreal,qreal > > points;
+    QList<City> points;
     QStringList rawPoints = data.split(";");
     QString temp;
     foreach(temp, rawPoints){
         if (!temp.isEmpty()){
             QStringList xy = temp.split("!");
-            points.append(QPair<qreal,qreal> (xy[0].toDouble(), xy[1].toDouble()));
+            points.append(City(xy[0].toDouble(), xy[1].toDouble()));
         }
     }
     namesToMethods[methodName]->start(points);

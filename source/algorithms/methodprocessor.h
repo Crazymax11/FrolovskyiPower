@@ -3,21 +3,22 @@
 
 #include <QObject>
 #include <QPair>
+#include <salesman/city.h>
 class MethodProcessor : public QObject
 {
     Q_OBJECT
 
 public:
     explicit MethodProcessor(QObject *parent = 0);
-    static qreal estimate(QList<QPair<qreal,qreal> > points);
+    static qreal estimate(QList<City> points);
 signals:
-    void newBestFound(QList<QPair<qreal,qreal>> points);
-    void done(QList<QPair<qreal,qreal> > points);
+    void newBestFound(QList<City> points);
+    void done(QList<City> points);
 public slots:
-    virtual void start(QList<QPair<qreal,qreal> > points) = 0;
+    virtual void start(QList<City> points) = 0;
 protected:
     qreal m_bestEstimatedValue;
-    QList<QPair<qreal,qreal> > m_bestRoute;
+    QList<City> m_bestRoute;
 private:
 
 };

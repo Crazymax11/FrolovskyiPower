@@ -3,19 +3,16 @@
 
 #include <QObject>
 #include <QQmlApplicationEngine>
+#include <QApplication>
 
-#include "methodprocessor.h"
-#include "dynamicprogrammicalgorithmprocessor.h"
-#include "geneticalgorithmprocessor.h"
-#include "branchandboundalgorithmprocessor.h"
-#include "bruteforcesearchalgorithmprocessor.h"
-#include "antcolonyalgorithmprocessor.h"
-#include "simulatedannealingprocessor.h"
-class Core : public QObject
+#include "algorithms/methodprocessor.h"
+#include "algorithms/branchandboundalgorithmprocessor.h"
+#include "algorithms/bruteforcesearchalgorithmprocessor.h"
+class Core : public QApplication
 {
     Q_OBJECT
 public:
-    explicit Core(QObject *parent = 0);
+    Core(int & argc, char ** argv);
     ~Core();
 signals:
     void startBruteForce(QList<QPair<qreal,qreal>>);
