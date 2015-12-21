@@ -30,5 +30,7 @@ private:
     qreal m_y;
     QString m_name;
 };
+Q_DECLARE_METATYPE(City)
+typedef QList<City> Cities;
 
 #endif // CITY_H

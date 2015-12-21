@@ -3,5 +3,8 @@
         <file>main.qml</file>
         <file>City.qml</file>
         <file>Line.qml</file>
+        <file>images/world.jpg</file>
+        <file>images/europe.jpg</file>
+        <file>images/russia.jpg</file>
     </qresource>
 </RCC>

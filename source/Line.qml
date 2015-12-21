@@ -44,4 +44,33 @@ Rectangle {
         else
             return 0
     }
+
+    Behavior on x1 {
+        NumberAnimation {
+            //This specifies how long the animation takes
+            duration: 600
+            //This selects an easing curve to interpolate with, the default is Easing.Linear
+        }
+    }
+    Behavior on y1 {
+        NumberAnimation {
+            //This specifies how long the animation takes
+            duration: 600
+            //This selects an easing curve to interpolate with, the default is Easing.Linear
+        }
+    }
+    Behavior on x2 {
+        NumberAnimation {
+            //This specifies how long the animation takes
+            duration: 600
+            //This selects an easing curve to interpolate with, the default is Easing.Linear
+        }
+    }
+    Behavior on y2 {
+        NumberAnimation {
+            //This specifies how long the animation takes
+            duration: 600
+            //This selects an easing curve to interpolate with, the default is Easing.Linear
+        }
+    }
 }

@@ -6,6 +6,9 @@ Rectangle{
     height: 20
     radius: width/2
     color: "blue"
+    property real cityX: 0
+    property real cityY: 0
+    property string cityName: "123"
     MouseArea{
         anchors.fill: parent
         onClicked: {

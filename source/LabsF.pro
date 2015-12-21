@@ -9,7 +9,8 @@ SOURCES += \
     algorithms/bruteforcesearchalgorithmprocessor.cpp \
     algorithms/methodprocessor.cpp \
     app/core.cpp \
-    salesman/city.cpp
+    salesman/city.cpp \
+    algorithms/antcolonyalgorithmprocessor.cpp
 RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -23,5 +24,6 @@ HEADERS += \
     algorithms/bruteforcesearchalgorithmprocessor.h \
     algorithms/methodprocessor.h \
     app/core.h \
-    salesman/city.h
+    salesman/city.h \
+    algorithms/antcolonyalgorithmprocessor.h
 

@@ -9,7 +9,7 @@ class BruteForceSearchAlgorithmProcessor: public MethodProcessor
 public:
     BruteForceSearchAlgorithmProcessor();
 public slots:
-    void start(QList<City> points) override;
+    void start(Cities points) override;
 private:
     void extendPath(QList<City> curPath, QList<City> points);
 };
