@@ -105,7 +105,7 @@ void Core::done(Cities route,QString methodName){
     QTime elapsedTime(0,0,0);
     elapsedTime = elapsedTime.addMSecs(startTimes[methodName].elapsed());
     root->findChild<QObject*>(textResults[methodName])->setProperty("text",methodName + " " + elapsedTime.toString("HH:mm:ss"));
-
+    root->findChild<QObject*>(textResults[methodName]+"Length")->setProperty("text",MethodProcessor::estimate(route));
 
     /*
         objectName: "bruteForceResult"

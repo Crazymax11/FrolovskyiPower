@@ -1,14 +1,21 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Styles 1.4
 ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Коммивояжерим")
     id: root
     signal start(string name, variant data)
     signal result(string time, real res)
+
+    property var methodColors: {
+        "Перебор": "blue",
+        "Муравьи": "purple",
+        "Ветви и границы": "green"
+    }
 
     onResult: resText.text = time + " " + res
     RowLayout{
@@ -45,7 +52,7 @@ ApplicationWindow {
                     }
                 if (curLines == "undefined"){
                     curLines = []
-                    color = colors.pop()
+                    color = methodColors[name]
                     lines.push({"name" : name,
                                "color": color,
                                "lines": curLines})
@@ -97,117 +104,191 @@ ApplicationWindow {
                 }
             }
         }
-        Column{
+        Rectangle{
             Layout.preferredWidth: parent.width * 0.2
             Layout.fillHeight: true
-            id: controlColumn
-            Button{
-                id: bruteForceBtn
-                objectName: "bruteForceBtn"
-                width: controlColumn.width
-                text: "Перебор"
-                onClicked:{
-                    root.start(text, map.serialize())
+            border.width: 2
+            border.color: "grey"
+            color: "transparent"
+            Column{
+                anchors.fill: parent
+                anchors.margins: 5
+                id: controlColumn
+                Button{
+                    id: bruteForceBtn
+                    objectName: "bruteForceBtn"
+                    width: controlColumn.width
+                    text: "Перебор"
+                    onClicked:{
+                        root.start(text, map.serialize())
+                    }
+                    onHoveredChanged: {
+                        console.log(hovered)
+                        for(var i in map.lines){
+                            var lines = map.lines[i]
+                            console.log(lines["name"])
+                            console.log(text)
+                            if (lines["name"] != text)
+                                for(var ind in lines["lines"])
+                                    lines["lines"][ind].visible = !hovered
+                        }
+                    }
                 }
-            }
-            Button{
-                width: controlColumn.width
-                id: branchBtn
-                objectName: "branchBtn"
-                text: "Ветви и границы"
-                onClicked:{
-                    root.start(text, map.serialize())
+                Button{
+                    width: controlColumn.width
+                    id: branchBtn
+                    objectName: "branchBtn"
+                    text: "Ветви и границы"
+                    onClicked:{
+                        root.start(text, map.serialize())
+                    }
+                    onHoveredChanged: {
+                        console.log(hovered)
+                        for(var i in map.lines){
+                            var lines = map.lines[i]
+                            console.log(lines["name"])
+                            if (lines["name"] != text)
+                                for(var ind in lines["lines"])
+                                    lines["lines"][ind].visible = !hovered
+                        }
+                    }
                 }
-            }
-            Button{
-                width: controlColumn.width
-                id: antBtn
-                objectName: "antBtn"
-                text: "Муравьи"
-                onClicked:{
-                    root.start(text, map.serialize())
+                Button{
+                    width: controlColumn.width
+                    id: antBtn
+                    objectName: "antBtn"
+                    text: "Муравьи"
+                    onClicked:{
+                        root.start(text, map.serialize())
+                    }
+                    onHoveredChanged: {
+                        console.log(hovered)
+                        for(var i in map.lines){
+                            var lines = map.lines[i]
+                            console.log(lines["name"])
+                            if (lines["name"] != text)
+                                for(var ind in lines["lines"])
+                                    lines["lines"][ind].visible = !hovered
+                        }
+                    }
                 }
-            }
-            Text{
-                text: "Итерации " + antIterations.value
-            }
-            Slider{
-                id: antIterations
-                objectName: "antIterations"
-                maximumValue: 10000
-                minimumValue: 0
-                stepSize: 1
-                value: 500
-                width: controlColumn.width
-            }
-            Text{
-                text: "Жадность " + Math.round(antGreedy.value*100)/100
-            }
-            Slider{
-                id: antGreedy
-                objectName: "antGreedy"
-                maximumValue: 1
-                minimumValue: 0
-                stepSize: 0.05
-                value: 0.9
-                width: controlColumn.width
-            }
-            Text{
-                text: "Стадность " + Math.round(antHerdy.value*100)/100
-            }
-            Slider{
-                id: antHerdy
-                objectName: "antHerdy"
-                maximumValue: 1
-                minimumValue: 0
-                stepSize: 0.05
-                value: 0.1
-                width: controlColumn.width
-            }
-            Text{
-                text: "Испарение " + Math.round(antVaporization.value*100)/100
-            }
-            Slider{
-                id: antVaporization
-                objectName: "antVaporization"
-                maximumValue: 1
-                minimumValue: 0
-                stepSize: 0.05
-                value: 0.5
-                width: controlColumn.width
-            }
-            Text{
-                text: "карта"
-            }
+                Text{
+                    text: "Итерации " + antIterations.value
+                }
+                Slider{
+                    id: antIterations
+                    objectName: "antIterations"
+                    maximumValue: 10000
+                    minimumValue: 0
+                    stepSize: 1
+                    value: 500
+                    width: controlColumn.width
+                }
+                Text{
+                    text: "Жадность " + Math.round(antGreedy.value*100)/100
+                }
+                Slider{
+                    id: antGreedy
+                    objectName: "antGreedy"
+                    maximumValue: 1
+                    minimumValue: 0
+                    stepSize: 0.05
+                    value: 0.9
+                    width: controlColumn.width
+                }
+                Text{
+                    text: "Стадность " + Math.round(antHerdy.value*100)/100
+                }
+                Slider{
+                    id: antHerdy
+                    objectName: "antHerdy"
+                    maximumValue: 1
+                    minimumValue: 0
+                    stepSize: 0.05
+                    value: 0.1
+                    width: controlColumn.width
+                }
+                Text{
+                    text: "Испарение " + Math.round(antVaporization.value*100)/100
+                }
+                Slider{
+                    id: antVaporization
+                    objectName: "antVaporization"
+                    maximumValue: 1
+                    minimumValue: 0
+                    stepSize: 0.05
+                    value: 0.5
+                    width: controlColumn.width
+                }
+                Text{
+                    text: "карта"
+                }
 
-            ComboBox{
-                id: mapEditor
-                model: ["Земля", "Европа", "Россия"]
-                currentIndex: 0
-                property var dict: {"Земля":"qrc:/images/world.jpg",
-                "Европа":"qrc:/images/europe.jpg",
-                "Россия":"qrc:/images/russia.jpg"}
-                onCurrentIndexChanged: mapImage.source =dict[model[currentIndex]]
-            }
-            Text{
-                text:"результаты"
-            }
-            Text{
-                id: bruteForceResult
-                objectName: "bruteForceResult"
-                wrapMode: Text.WordWrap
-            }
-            Text{
-                id: branchedResult
-                objectName: "branchedResult"
-                wrapMode: Text.WordWrap
-            }
-            Text{
-                id: antColonyResult
-                objectName: "antColonyResult"
-                wrapMode: Text.WordWrap
+                ComboBox{
+                    id: mapEditor
+                    model: ["Земля", "Европа", "Россия"]
+                    currentIndex: 0
+                    width: parent.width
+                    property var dict: {"Земля":"qrc:/images/world.jpg",
+                    "Европа":"qrc:/images/europe.jpg",
+                    "Россия":"qrc:/images/russia.jpg"}
+                    onCurrentIndexChanged: mapImage.source =dict[model[currentIndex]]
+                }
+                Text{
+                    text:"результаты"
+                }
+                Text{
+                    text:"время"
+                }
+                Text{
+                    id: bruteForceResult
+                    objectName: "bruteForceResult"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Перебор"]
+                }
+                Text{
+                    id: branchedResult
+                    objectName: "branchedResult"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Ветви и границы"]
+                }
+                Text{
+                    id: antColonyResult
+                    objectName: "antColonyResult"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Муравьи"]
+                }
+                Text{
+                    text:"длина пути"
+                }
+                Text{
+                    id: bruteForceResultLength
+                    objectName: "bruteForceResultLength"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Перебор"]
+                }
+                Text{
+                    id: branchedResultLength
+                    objectName: "branchedResultLength"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Ветви и границы"]
+                }
+                Text{
+                    id: antColonyResultLength
+                    objectName: "antColonyResultLength"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Муравьи"]
+                }
             }
         }
+
+
     }
 
 
@@ -248,52 +329,5 @@ ApplicationWindow {
         }
 
     }
-
-//    ComboBox{
-//        id: functionList
-//        anchors.top : parent.top
-//        anchors.left: map.right
-//        width: 100
-//        height: 30
-//        model: ["Метод ветвей и границ","Метод динамического программирования","Генетические алгоритмы","Метод системы муравьев и муравьиных колоний"]
-//    }
-//    Rectangle{
-//        id: startBtn
-//        anchors.left: functionList.right
-//        anchors.top: parent.top
-//        width: 100
-//        height: 30
-//        Text{
-//            anchors.fill: parent
-//            text: "start"
-//            font.pointSize: 50
-//            fontSizeMode: Text.VerticalFit
-//            horizontalAlignment: Text.AlignHCenter
-//        }
-
-//        MouseArea{
-//            id: startBtnMouseArea
-//            anchors.fill: parent
-//            onClicked: {
-//                var methodName = functionList.currentText
-
-//            }
-//        }
-//    }
-//    Rectangle{
-//        id: resRect
-//        anchors.left: map.right
-//        anchors.top: functionList.bottom
-//        width: 100
-//        height: 30
-//        color: "gray"
-//        Text{
-//            id: resText
-//            anchors.fill: parent
-//            font.pointSize: 50
-//            fontSizeMode: Text.VerticalFit
-//            horizontalAlignment: Text.AlignHCenter
-//        }
-//    }
 }
 
