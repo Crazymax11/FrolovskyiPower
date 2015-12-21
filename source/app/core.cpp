@@ -108,7 +108,7 @@ void Core::done(Cities route,QString methodName){
     btns[methodName]->setProperty("enabled",true);
     QTime elapsedTime(0,0,0);
     elapsedTime = elapsedTime.addMSecs(startTimes[methodName].elapsed());
-    root->findChild<QObject*>(textResults[methodName])->setProperty("text",methodName + " " + elapsedTime.toString("mm:ss:mmm"));
+    root->findChild<QObject*>(textResults[methodName])->setProperty("text",methodName + " " + elapsedTime.toString("mm:ss:zzz"));
     root->findChild<QObject*>(textResults[methodName]+"Length")->setProperty("text",MethodProcessor::estimate(route));
     root->findChild<QObject*>(textResults[methodName]+"Route")->setProperty("text",routeString);
 }
