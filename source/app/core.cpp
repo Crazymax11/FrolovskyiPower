@@ -101,11 +101,16 @@ void Core::showPath(QList<City> path, QString name){
 
 void Core::done(Cities route,QString methodName){
     showPath(route, methodName);
+    QString routeString;
+    for(int i=0;i<route.size();i++)
+        routeString+= route[i].name() + QString(" -> ");
+    routeString += route[0].name();
     btns[methodName]->setProperty("enabled",true);
     QTime elapsedTime(0,0,0);
     elapsedTime = elapsedTime.addMSecs(startTimes[methodName].elapsed());
-    root->findChild<QObject*>(textResults[methodName])->setProperty("text",methodName + " " + elapsedTime.toString("HH:mm:ss"));
+    root->findChild<QObject*>(textResults[methodName])->setProperty("text",methodName + " " + elapsedTime.toString("mm:ss:mmm"));
     root->findChild<QObject*>(textResults[methodName]+"Length")->setProperty("text",MethodProcessor::estimate(route));
+    root->findChild<QObject*>(textResults[methodName]+"Route")->setProperty("text",routeString);
 }
 void Core::bruteFroceDone(Cities cities){
     done(cities,"Перебор");

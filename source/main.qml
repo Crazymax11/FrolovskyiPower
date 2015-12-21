@@ -324,6 +324,31 @@ ApplicationWindow {
                     width: parent.width
                     color: methodColors["Муравьи"]
                 }
+                Text{
+                    text: "маршрут"
+                }
+
+                Text{
+                    id: bruteForceResultRoute
+                    objectName: "bruteForceResultRoute"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Перебор"]
+                }
+                Text{
+                    id: branchedResultRoute
+                    objectName: "branchedResultRoute"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Ветви и границы"]
+                }
+                Text{
+                    id: antColonyResultRoute
+                    objectName: "antColonyResultRoute"
+                    wrapMode: Text.WordWrap
+                    width: parent.width
+                    color: methodColors["Муравьи"]
+                }
             }
         }
 
