@@ -106,11 +106,6 @@ void Core::done(Cities route,QString methodName){
     elapsedTime = elapsedTime.addMSecs(startTimes[methodName].elapsed());
     root->findChild<QObject*>(textResults[methodName])->setProperty("text",methodName + " " + elapsedTime.toString("HH:mm:ss"));
     root->findChild<QObject*>(textResults[methodName]+"Length")->setProperty("text",MethodProcessor::estimate(route));
-
-    /*
-        objectName: "bruteForceResult"
-        objectName: "branchedResult"
-        objectName: "antColonyResult"*/
 }
 void Core::bruteFroceDone(Cities cities){
     done(cities,"Перебор");

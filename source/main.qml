@@ -16,6 +16,11 @@ ApplicationWindow {
         "Муравьи": "purple",
         "Ветви и границы": "green"
     }
+    property var buttonColors: {
+        "Перебор": {"hovered": "#59ABE3", "unhovered": "#4183D7"},
+        "Муравьи": {"hovered": "#BF55EC", "unhovered": "#9A12B3"},
+        "Ветви и границы": {"hovered": "#2ECC71", "unhovered": "#26A65B"}
+    }
 
     onResult: resText.text = time + " " + res
     RowLayout{
@@ -119,6 +124,18 @@ ApplicationWindow {
                     objectName: "bruteForceBtn"
                     width: controlColumn.width
                     text: "Перебор"
+                    style: ButtonStyle{
+                        background: Rectangle{
+                            radius: 10
+                            width: control.width
+                            height: control.height
+                            color: {
+                                var isHovered = control.hovered? "hovered": "unhovered"
+                                buttonColors[control.text][isHovered]
+                            }
+                        }
+                    }
+
                     onClicked:{
                         root.start(text, map.serialize())
                     }
@@ -142,6 +159,17 @@ ApplicationWindow {
                     onClicked:{
                         root.start(text, map.serialize())
                     }
+                    style: ButtonStyle{
+                        background: Rectangle{
+                            radius: 10
+                            width: control.width
+                            height: control.height
+                            color: {
+                                var isHovered = control.hovered? "hovered": "unhovered"
+                                buttonColors[control.text][isHovered]
+                            }
+                        }
+                    }
                     onHoveredChanged: {
                         console.log(hovered)
                         for(var i in map.lines){
@@ -158,6 +186,17 @@ ApplicationWindow {
                     id: antBtn
                     objectName: "antBtn"
                     text: "Муравьи"
+                    style: ButtonStyle{
+                        background: Rectangle{
+                            radius: 10
+                            width: control.width
+                            height: control.height
+                            color: {
+                                var isHovered = control.hovered? "hovered": "unhovered"
+                                buttonColors[control.text][isHovered]
+                            }
+                        }
+                    }
                     onClicked:{
                         root.start(text, map.serialize())
                     }
