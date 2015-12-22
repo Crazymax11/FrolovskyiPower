@@ -18,7 +18,7 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
-
+RC_ICONS = ico.ico
 HEADERS += \
     algorithms/branchandboundalgorithmprocessor.h \
     algorithms/bruteforcesearchalgorithmprocessor.h \

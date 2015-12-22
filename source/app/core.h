@@ -7,6 +7,7 @@
 #include <QThread>
 #include <QSignalMapper>
 #include <QTIme>
+#include <QIcon>
 #include "algorithms/methodprocessor.h"
 #include "algorithms/branchandboundalgorithmprocessor.h"
 #include "algorithms/bruteforcesearchalgorithmprocessor.h"

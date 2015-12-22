@@ -19,5 +19,10 @@ Rectangle{
             _root.destroy()
         }
     }
+    Text{
+        y: -10
+        x: -10
+        text: cityName
+    }
 }
 

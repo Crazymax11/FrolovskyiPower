@@ -6,5 +6,6 @@
         <file>images/world.jpg</file>
         <file>images/europe.jpg</file>
         <file>images/russia.jpg</file>
+        <file>ico.png</file>
     </qresource>
 </RCC>

@@ -4,6 +4,7 @@
 #include "core.h"
 Core::Core(int & argc, char ** argv): QApplication(argc,argv)
 {
+    //setWindowIcon(QIcon(QPixmap("ico.ico")));
     qRegisterMetaType<Cities>("Cities");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     root = engine.rootObjects()[0];
